@@ -9,19 +9,25 @@ class  thread extends Thread{
     public thread(int tid){
         this.id = tid;
     }
+
+    //Contador
+    public synchronized void inc(){
+        lab6.paresthreads++;
+    }
+
     //Código executado pelas threads
-    public synchronized void run() {
+    public void run() {
         if(this.id==lab6.Nthreads-1){
             for(int i=id*bloco;i < lab6.tamvet;i++){
                 if(lab6.vetor[i]%2==0){
-                    lab6.paresthreads++;
+                    inc();
                 }
             }
         }
         else{
             for(int i=id*bloco ; i<bloco*(this.id+1) ; i++){
                 if(lab6.vetor[i]%2==0){
-                    lab6.paresthreads++;
+                    inc();
                 }
             }
         }
@@ -30,7 +36,7 @@ class  thread extends Thread{
 
 class lab6 {
     static final int Nthreads = 8;  //Número de threads
-    static final int tamvet = 100;  //Tamanho máximo de elementos do vetor
+    static final int tamvet = 200;  //Tamanho máximo de elementos do vetor
     static public int paresthreads = 0;  //Quantidade de pares encontrador pelas threads
     static public int[] vetor;
     static private int paresseq=0;  //Quantidade de pares encontrados sequencialmente

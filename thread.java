@@ -60,7 +60,7 @@ class lab6 {
             try { threads[i].join(); } catch (InterruptedException e) { return; }
         }
 
-        //Aguardando 
+        //Calculando de maneira sequencial
         for (int i=0;i<tamvet;i++){
             if(vetor[i]%2==0){
                 paresseq++;

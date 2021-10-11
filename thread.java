@@ -10,27 +10,29 @@ class  thread extends Thread{
         this.id = tid;
     }
 
-    //Contador
-    public synchronized void inc(){
-        lab6.paresthreads++;
-    }
-
     //Código executado pelas threads
     public void run() {
         if(this.id==lab6.Nthreads-1){
             for(int i=id*bloco;i < lab6.tamvet;i++){
                 if(lab6.vetor[i]%2==0){
-                    inc();
+                    mutex.inc();
                 }
             }
         }
         else{
             for(int i=id*bloco ; i<bloco*(this.id+1) ; i++){
                 if(lab6.vetor[i]%2==0){
-                    inc();
+                    mutex.inc();
                 }
             }
         }
+    }
+}
+
+class mutex {
+    //Contador
+    public static synchronized void inc(){
+        lab6.paresthreads++;
     }
 }
 

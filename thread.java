@@ -1,3 +1,5 @@
+//Versão corrigida do lab6
+
 //Classe das threads
 class  thread extends Thread{
     //Identificador das threads 
